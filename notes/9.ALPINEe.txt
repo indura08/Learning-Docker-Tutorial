@@ -1,0 +1,24 @@
+Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. It's designed for simplicity, efficiency, and ease of use, making it a popular choice for Docker images due to its small size. When referring to "Alpine" in the context of Docker, it usually means using the Alpine Linux base image to create Docker containers.
+
+Advantages of Using Alpine in Docker
+----------------------------------------
+1.Small Size: Alpine Linux images are significantly smaller than most other base images, typically around 5 MB. This reduces the overall size of your Docker 
+
+2.images and speeds up the download and deployment times.
+
+3.Security: Alpine is designed with security in mind, using a hardened kernel and stack protection.
+
+4.Minimalistic: It includes only the necessary components, reducing the attack surface and making it more efficient.
+
+alphine images pull krnna widiya
+---------------------------------
+
+nginx ekat ghuwe : 	" docker pull nginx:alpine"
+
+node ekat ghuwe  :	" docker pull node:latest-alpine"
+
+mewaye me alpine kiyla ghna widi wenas wena eka docker hub eke apita adlal image ek search kalama ena documentation eke blnna one khmd krnne kiyla
+
+e kiynne me docker images apita one widit hdaddi from ekt danna base image ekk epai, ekat thami me alpine images danna , alpine images size ekn aduu hinda resource efficient and thwwa godak widi walin godak advantages genalla denwa project ekt
+
+nawttuwe 2:05:44

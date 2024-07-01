@@ -1,0 +1,14 @@
+A .dockerignore file is used to specify files and directories that should be ignored by Docker when building an image from a Dockerfile. It functions similarly to a .gitignore file used in Git, and helps reduce the build context sent to the Docker daemon, which can speed up the build process and reduce the size of the resulting image.
+
+Why Use a .dockerignore File?
+-------------------------------
+
+1.Reduce Build Context Size: Exclude unnecessary files and directories to decrease the size of the build context sent to the Docker daemon.
+
+2.Improve Build Performance: Speed up the build process by ignoring files that are not needed in the image.
+
+3.Security: Prevent sensitive files (e.g., environment variables, credentials) from being included in the Docker image.
+
+4.Avoid Unwanted Artifacts: Ensure temporary files, logs, and other non-essential artifacts are not included in the image.
+
+api kale docker ignore file ek hduwa . user-service-api eke thiynwa eka blnna. eke wage ignore krnna one ewa tika dockerignore file eke daala samnya widiytm image ek container eke run kala

@@ -1,0 +1,69 @@
+docker container kiwwa container eka thule thiynw filesystem ekk eka athule thami docker area ek thiynne meka screenshot eke thiynwa  me docker volumes kiynne ewa.
+
+docker volumes allows sharing of data. files and folders between host and container and conatainer and a container
+
+methna host kiynne ape pc eka ho laptop eki. enam local machine eki.
+
+more...
+
+
+What Are Docker Volumes?
+------------------------
+
+1.Persistent Storage: Volumes provide a way to persist data across container restarts and even container removals. They are ideal for storing data that needs to be retained, such as databases, logs, or user data.
+
+2.Managed by Docker: Volumes are created and managed by Docker. They can be located in a part of the host filesystem that Docker manages (/var/lib/docker/volumes/ on Linux) or can be mounted to specific paths on the host.
+
+3.Decoupling Data from Containers: By using volumes, you decouple the application's data from the container itself. This allows you to update or replace containers without losing data.
+
+Types of Docker Volumes
+-----------------------
+
+1.Anonymous Volumes: These are volumes that Docker creates automatically when you use the -v or --mount options without specifying a name. They are useful for temporary data storage.
+
+2.Named Volumes: These are volumes that you explicitly create and name. They can be used by multiple containers and provide a more durable storage solution.
+
+3.Bind Mounts: Unlike volumes, bind mounts are tied directly to a specific location on the host filesystem. They offer more control over the storage location but are less portable and manageable compared to volumes.
+
+Creating and Using Docker Volumes
+----------------------------------
+Creating a Volume
+You can create a named volume using the docker volume create command: 	docker volume create my_volume 
+
+
+ape computer eke enam host gawa thyna file ekk nginx run wena container eke run krganimat awashya steps:
+--------------------------------------------------------------------------------------------------------------
+
+1.mulinma adlal folder ekt giilla ethanin command line ekk open krgnnwa - mama kale docker tutorial eka ahule thibba project thiyna folder ek athulen open krgatta command line ekk
+
+2. eta passe container eke run krnwa volume eke ekkala eakt menna me command eka thami ghnne :
+
+	" docker run --name website -v ${PWD}:/usr/share/nginx/html:ro -d -p 8080:80 nginx "		//methna ro kiynne read only ekiynne apita aluth ewa hdnna 
+
+edit krnna arwa mewa mukuth bha , ehma one nm ro flag eka nathuwa ghnna one. anith eka meke theruma PWD kiynne working directory ekane , ethkot host eke dant e terminal ek on wela thiyna directory eka enam host eke pwd folder eka user/share/nginx/html kiyna container eke volume ekt connect krnna kiyna eki.
+
+methna -v kiynne volume kiyna ek , ${PWD} kiynne working directoy eka. eta passe ghla thiyna /usr/share scn eka nginx ekn compy krgtte nginx ekn cpy krgttta kiynne docker hub eke nginx image eke description eke thibba eka 
+
+
+3.docker exec: This command is used to run a command in a running container. 
+
+	docker exec -it website bash: meke theruma it kiynne interactive mokda scn ekk , me okkogema theruma awilla interactive bash shell ekk danata run wena container eke ope krgnnai , meham ghuwin passe apita one one widiyt bash command gha gha e container eki eke volume eki hasurgnna puluwan .
+
+dan api gttu udaharne api inne nginx eke. eke container eke volume eka hami ur/share/nginx/html kiynne , eke athult yann eke thiyna eka ek wada krnna apita uda bash scn eke command ek ghuwam puluwan wenwa 
+
+bash ghla iwar wela athult gihin mokk hari aluth ekk hdnwa nm :  	'touch about.html' 	//mekn wenne aluth file ekk hdnewa about.html kiyla
+
+
+-----------------------------------------------------------------------------------------------------
+
+dan mekdi oda error ekk awa. docker folder eka athule thiyna project folder eke thoynwa bootstrap app ekk mn pitin gttu, eke index.html eka thiynne dst folder ek athule , niknma localhost:8080 gattama enne eliyen thiyna index .html file ek . apita ara pitin gattu eka one nm yanna one folder athult menna mehm
+
+	' localhost:8080/disct'
+
+e widiytai athle thiyna ekk nginx ekn gnne
+
+4.eka container ekaka thiyna volume ekk wena container ekkt gnnwa nm commadn eka
+
+	"docker run --name webiste-copy --volumes-from website -d -p 8081:80 nginx"
+
+blnna hodt volumes-from ghla eta passe adla volume ek thiyna container eke nama denwa nattnm id ekath denna puluwan mn hithnne 

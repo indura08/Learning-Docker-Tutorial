@@ -1,0 +1,50 @@
+Docker Image
+-------------
+
+Definition: A Docker image is a lightweight, standalone, executable package that includes everything needed to run a piece of software, including the code, runtime, libraries, environment variables, and configuration files.
+
+Read-Only Template: Images are read-only templates used to create Docker containers. They are built in layers, where each layer represents a change (such as an update or installation of a package).
+
+Creation: You can create Docker images using a Dockerfile, which is a text file that contains a series of instructions on how to build the image.
+
+Storage: Docker images are stored in repositories, such as Docker Hub, which is a public registry where Docker users can share and access images.
+
+commands
+--------
+To see all images we have:	'docker images'
+
+to pull some images frm docker hub or anyhow , to pull some images 		'docker pull imageName' ex: docker pull ninx
+
+to run a image:									'docker run imageName:latest' => methna latest kiynne tag eka  
+
+to run with deattach mode 		'docker run -d nginx:latest'
+
+to remove a image : 		' docker image rm imageId '
+
+docker container
+----------------
+
+Definition: A Docker container is a runnable instance of a Docker image. Containers are lightweight and isolated from each other and the host system, but they can interact with the host and other containers through defined channels.
+
+Execution: When you run a Docker image, it creates a container. This container can be started, stopped, moved, and deleted. Each container is a separate environment in which you can run applications and services.
+
+Isolated Environment: Containers provide a consistent environment that isolates applications from the underlying system and other containers. This ensures that the application runs the same way regardless of where it's deployed.
+
+Ephemeral Nature: Containers are designed to be transient. You can stop and remove a container without losing the data, as containers can persist data by mounting storage from the host or using Docker volumes.
+
+Example
+If you have a Docker image for a web server, running the image would create a container where the web server is active and serving web pages.
+
+
+commands
+--------
+to see running containers: 'docker container ls' 
+
+to stop a container from running: 'docker stop containerId'
+
+dan api laga run krl thiyna container ekk web browser eke balagnna localhost ekt map krgnna menna me command eka ghnawa : 'docker run -d -p 8080:80 nginx:latest' methna nginx kiynne image name ek saha latest kiynne default keyword ekk keyword gana issrht yaddi therei.
+methana 8080 kiyl dammata apita onema port ekk denna puluwan 300, 5003 one ekk dunnnahaki
+
+ekama image ek ports deck run krnna onenm example port 3000 saha 8080 dekema
+
+	'docker run -d -p 8080:80 -p 3000:80 nginx:latest'

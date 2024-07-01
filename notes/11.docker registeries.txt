@@ -1,0 +1,92 @@
+what is docker registries
+=========================
+
+docker registery is a computer server that holds all of our images. There are 2 types  of  docker registeres
+
+	1.private registries 
+	2.public registries
+
+more notes...
+
+
+Docker Registries
+=================
+Docker registries are repositories where Docker images are stored, managed, and distributed. They act as libraries for Docker images, enabling users to share and retrieve images easily.
+
+Types of Docker Registries
+-------------------------
+
+1.Docker Hub:
+
+The most popular public registry.
+Offers free hosting for public images.
+Provides private repositories for a fee.
+URL: hub.docker.com
+
+2.Docker Trusted Registry (DTR):
+
+An enterprise-grade, private Docker registry.
+Offers advanced features like role-based access control, image scanning, and more.
+Typically used within organizations for secure image storage and management.
+
+3.Other Public Registries:
+
+Google Container Registry (GCR): Managed by Google Cloud.
+Amazon Elastic Container Registry (ECR): Managed by AWS.
+Azure Container Registry (ACR): Managed by Microsoft Azure.
+
+4.Self-Hosted Registries:
+
+Organizations can host their own private registries using the open-source Docker Registry.
+Provides full control over image storage, security, and access.
+
+Key Features of Docker Registries
+---------------------------------
+1.Image Storage: Store Docker images in repositories, similar to how code is stored in repositories.
+
+2.Versioning: Maintain multiple versions of an image, each identified by tags.
+
+3.Access Control: Control who can push, pull, and manage images.
+
+4.Integration: Integrate with CI/CD pipelines for automated builds and deployments.
+
+5.Security: Secure images with features like vulnerability scanning and image signing.
+
+Benefits of Using Docker Registries
+-------------------------------------
+1.Centralized Storage: Keep all Docker images in one place.
+
+2.Version Control: Track different versions of images easily.
+
+3.Collaboration: Share images with team members or the community.
+
+4.CI/CD Integration: Automate image building, testing, and deployment.
+
+5.Security: Scan images for vulnerabilities and enforce security policies.
+
+
+api docker hub ek hdpu repository walt images push orna widiyt adla command and anik dewal
+==========================================================================================  
+1.mulinma docker hub eke login wela repository ekk hduwa
+
+2.eta passe menna me wage images 3k hdgtta :
+
+	docker tag indura-web-site:1 indura08/myfirstwebsite1:1
+	docker tag indura-web-site:2 indura08/myfirstwebsite1:2
+	docker tag indura-web-site:latest indura08/myfirstwebsite1:latest
+
+me tagging waldi tag krna aluth image eke name ek mehm danne ara push kradi image eka thiyenna one widiyk thiynwa ekat galapennai , ekiynne docker hub eke api repo ekk hduwam eke kiynwa push krddi menna me code eka use krnna kiyla, e code ekt thiyna ekat galepnna thami image name ek hdnne , mat docker repo ek hduwam aawe push krddi menna mehm command ekk use krnna kiyla 
+
+3.eta psse me wa tika repository ekt push krnna mulinma log wle ainna one docker account ekn, ekat onnm docker desktop ekn log wennath puluwan saha menna me wage command line eknma log wennath puluwan 
+
+docker login : meka ghuwain passe username eki password eeki ghnna enwa e deka hariyt ghla log wenna puluwan 
+
+
+eta passe menna me codes ghla eka ek image tika push kala docker hub eke repo ekt
+
+	docker push indura08/myfirstwebsite1:1
+
+	docker push indura08/myfirstwebsite1:2
+
+	docker push indura08/myfirstwebsite1:latest
+

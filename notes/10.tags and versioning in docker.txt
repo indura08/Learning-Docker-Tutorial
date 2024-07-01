@@ -1,0 +1,42 @@
+Tags
+------
+
+Tags in Docker are like labels or names that you attach to Docker images. They help you identify different versions or variations of an image.
+
+
+Example:
+
+node:latest: The latest version of the Node.js image.
+node:14: The specific version 14 of the Node.js image.
+
+Versioning
+-----------
+
+Versioning in Docker is done using tags to indicate different versions of an image. This helps in maintaining and deploying specific versions of an application.
+
+advantages of tagging and versioning
+-----------------------------------
+1.Allows you to control image versions
+2.Avoids breaking changes
+3.it is safe
+
+important
+---------
+
+danat thyn image ekaka idla eke thiyna dewalma daala thwa image ekk hadaddi ghna comman ek meki :
+
+	" docker tag indura-web-site:latest indura-web-site:1 " 
+
+meke indura-web-site kiynne dnata thiyna image eke saha latest kiynne eke version eka , anik indura-web-site:1 kiynne thibba ekn aluth ekk hdnaw eka version 1 kiyna eki . hariytm kiwwoth mul indura-web-site kiyna eka awill "from" saha anthima indura-web-site eka awilla "destination" kiyl hdunwanna puluwan 
+
+mama tutorial eke krpu example eka briefly:
+
+1.mulinma ara test bootstrap projet ekk thiynwa eka thiyna folder ekn command prompt eka open krla aluth image ekk hduwa meham: docker buil -t indura-web-site:latest
+
+2. eta psse ekn hduwa tag eka change krla aluth version ekk mehm: docker tag indura-web-site:latest indura-web-site:1
+
+dan latest ek tag wela thiynne version 1 ekat
+
+3.eta passe hduwa aaye tag eka change krla aluth indura-web-site:latest image ekk saha version ekk => docker tag indura-web-site:latst indura-web-site:2 habi mke hdnna kain wenakm kipayak kala index.html file ekt , 
+
+eta passe ports maru krla latest ekati 1, 2tai wena wenama container hdla ewa run krla bluwam 1 eke changes mukth pennane nha manuth latest ekei 2 i pennnwa , ekat hethuwa api changes kale 1 image eka hduwat passe saha 2 image ek hdnna kalin , saha latest image ek point kala 2 image ekt nisa

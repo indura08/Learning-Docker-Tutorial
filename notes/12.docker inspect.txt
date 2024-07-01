@@ -1,0 +1,26 @@
+Docker Inspect: An Overview
+===========================
+docker inspect is a Docker command that provides detailed information about Docker objects, such as containers, images, volumes, or networks. It returns information in JSON format, making it easy to read and understand.
+
+Purpose of docker inspect
+--------------------------
+
+1.Detailed Information: Get comprehensive details about Docker objects.
+
+2.Debugging: Useful for diagnosing issues with containers and images.
+
+3.Configuration Check: Verify configurations and settings of Docker objects.
+
+docker inspect krddi ghna command ek :
+
+	" docker inspect containerId ": container id wenuwat continer name ek dannath puluwan
+
+
+docker logs
+=============
+
+1.docker log blagnnwa nm command ek: 	" docker logs containerId " : or containerName
+
+docker logs -f containerId ghuwoth wenne f kiyna eke heruma follow kiyna eki , eka live follow krnwa container eke wena wenaskm sha eka live update krnwa loggings walt 
+
+docker logs --help ghuwam denna puluwan hama command ekk ganama enwa 

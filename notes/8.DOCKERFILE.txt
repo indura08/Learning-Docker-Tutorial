@@ -1,0 +1,45 @@
+Docker file ekk aththatama one wenne api apita one krna images hdaddi
+
+more....
+
+what is DOCKERFILE
+===================
+
+A Dockerfile is a text document that contains a set of instructions for building a Docker image. It automates the process of creating a Docker image by specifying the base image to use, the software packages to install, the configuration files to include, and the commands to run within the image. Here’s a breakdown of the key concepts and basic instructions used in a Dockerfile:
+
+Key Concepts
+--------------
+
+1.Base Image: The starting point for your Docker image. This is typically a minimal operating system image like Ubuntu, Alpine, or an official image for a specific software like Node.js, Python, etc.
+
+2.Instructions: Commands used in the Dockerfile to define what should be included in the image. Common instructions include FROM, RUN, COPY, CMD, EXPOSE, WORKDIR, and ENV.
+
+3.Layers: Each instruction in a Dockerfile creates a new layer in the image. Docker uses a layered filesystem to manage these layers efficiently.
+
+
+docker file ekn docker image ekk hdna widiya
+=============================================
+
+docker file ekn docker image ekk apita one ekk hdgnna nm menna mehi krnna oen:
+
+step1: dockerfile eka hdgnnwa (example docker file ekk thiynwa docker tute folder eka athule project folder eke eke thiynwa okkoma wisthare)
+
+step2: e docker file ek hdna folder eken terminal ek ope krgne ake  menna me command eka ghnwa 
+
+	"docker build  --tag website:latest . "
+
+	methna --tag kiynne image eke name ekt adlwa tag ekk dena ek, eka thwa tikk issrht giym igenagnna puluwan thwa tikk wadipura , abthimt thiyna . kiynne adla terminal ek on wela thiyna file eke okkoma dewal tika dockerfile eke add kiyl dela thiyna container volume ekt danna kiyna eki
+
+
+Node express project ekk docker image ekk hdla run krpu widya saha ekat adala commands
+=======================================================================================
+
+1.mulinma dockerfie eka hduwa eka thiynwa user-api kiyna folder eke athul thiyna projet eka athule
+
+2.etpa passe image ek hduwa menna me command eka ghla		' docker build -t user-service-api:latest . '
+
+3.eta passe container ekk hdla eka matha me image ek run kala ekt adla command ek :  ' docker run --name user-api -d -p 3000:5000 user-service-api:latest '
+
+methna 3000:5000 kiynne node express project eka run wenna api deela thiynne localhost 5000 post eke , e 5000 run wenwa 3000 run wenna kiylai me kiyla thiynne 
+
+4. eta passe localhost:5000 port ekt gihilla baluwam badu wada kala.

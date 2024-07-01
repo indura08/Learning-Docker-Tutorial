@@ -1,0 +1,39 @@
+Docker container manage kirima sambndawa goadak commands thiynwa ain kipayak wadagthma kipayak thami meka
+
+1.'docker ps ' :meke theruma danat run wena container tika blgnna eka
+
+docker ps ghla ghnna puluwananik commands : meka gttae docke ps --help ghla:
+
+ -a, --all             Show all containers (default shows just running)
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Format output using a custom template:
+                        'table':            Print output in table format
+                        with column headers (default)
+                        'table TEMPLATE':   Print output in table format
+                        using the given Go template
+                        'json':             Print in JSON format
+                        'TEMPLATE':         Print output using the given
+                        Go template.
+                        Refer to https://docs.docker.com/go/formatting/
+                        for more information about formatting output with
+                        templates
+  -n, --last int        Show n last created containers (includes all
+                        states) (default -1)
+  -l, --latest          Show the latest created container (includes all
+                        states)
+      --no-trunc        Don't truncate output
+  -q, --quiet           Only display container IDs
+  -s, --size            Display total file sizes
+
+
+2.docker rm containerId : meken krnne container delete krna ek , container ekk dlete krnna one nm kei ghnna one
+
+3. danat thiyna container okkogema ids blagnna one nm : docker ps -aq (methna q kiyna eke scn eka uda --help ekn gttu eke thiynaw anna ehkmai command kipayak ka paara run krnne )
+
+4. dnata thiyna container okkoma remove krnna one nm:  docker rm $(docker ps -aq)
+
+5. samnyen docker container ekk run weddi delete krnna bha eth e run wenddith deklete krnna one nm force delete krnna puluwan ekat one menna me command ek
+
+' docker rm -f $(docker ps -aq)'
+
+methna -f kiyne force kiyna ek 

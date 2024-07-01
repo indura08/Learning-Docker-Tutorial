@@ -1,0 +1,24 @@
+1.dan samnyen docker image ekk container eke run kalama e kiynne simply docker image ekk run kalama ekat automa nam watenawa. amahar weird nam watnenne eke blnna puluwan docker ps ghuwamama. apita api mokk hari image ekk run krnna kaln container ekt namak dunnahaki one nm ekat one krna command eka:
+
+
+	' docker run --name website -d -p 8080:80 nginx:latest'
+
+--name ghla apita one krna name ek liynna thiynne 
+
+
+
+2. samnyen api docker ps ghuwam run wena containers wal wishthre eddi podk patalili sahagathi ka ena widiya eka piliyamak widiyt apita one widiyt docker ps ghuwam ena details gnna puluwa ekat adlal code eka 
+
+	' docker ps --format="ID\t{{.ID}}\nName\t{{.Names}}\nIMAGE\t{{.Image}}\n" '
+
+oya widiytm ghnna one \t kiynne tab ekk thiynwa kiyna eka \ n kiynne new line ekkt ynwa kiyna eka , niknam basic string representation ekk pennala thiynne ithinhairytm bluwam
+
+3. dan samnyen api docker container wala details docker ps ghla blna hama welwakm oya code ekk ghnna giyoth format eka daala apit amaru wenwa ekt krnne menna mehm ekk
+
+	'export FORMAT="ID\t{{.ID}}\nName\t{{.Names}}\nIMAGE\t{{.Image}}\n" '
+
+menna me command ek ghuwam FORMAT kiyna variable ekk wage ekk hdila ekat apit one format type eka api dunu widiyt save wenwa eta pase api docker ps liyddi mehm liynwa
+
+	'docker ps --format=FORMAT'
+
+methandith ara uda widiytm eka enwa 

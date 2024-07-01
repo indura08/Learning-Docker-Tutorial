@@ -1,0 +1,10 @@
+node_modules
+
+Dockerfile
+
+.git
+
+#any file ends with gulp.js will be added to dockerignore file
+*.gulp.js
+
+#mathk thiygnna * kiynne anyvalue ekk metha api folde/* dunnoth folder kiytla ptan ganna onema folder ekke kiyna eki eke theruma

@@ -1,0 +1,25 @@
+what is docker: 
+===============
+
+Docker is a tool for running applications in an isolated environment. It is very similar to virtual machine and it doesn't need specific operating system or much memory. App run in same environment. Docker guarantees that any software or web application i deploy it works.  
+
+What is Docker?
+----------------
+1.Containers: Imagine you have a box (a container) where you put everything your application needs to run: the code, libraries, dependencies, and even the operating system. This box can be picked up and moved anywhere, and it will run exactly the same way. (tutorial sir note) container are an abstraction at the app layer that packages code and dependencies together. Multiple containers can run on the same machine and share the OS kernel with the containers, each running as isolated processes in user space. A container doesn't require a full operating system
+
+so on the other hand Virtual machines means that they are an abstraction of physical hardware turning one server into many servers. The hypervisor allows multiple VMs to run on a single machine. Each VM includes a full copy of an operating system, the application, necessary binaries and libraries - taking up tense of GBs. VMs can also be very slow to boot. So using docker is very much good rather than using virtual machines that is what tutor said i guess but there is a difference between VMs and docker please look it up more
+
+2.Consistency: With Docker, your application will work the same on any computer or server, because everything it needs is inside that box. No more "it wrks on my machine" problems.
+
+3.Efficiency: Containers use less memory and start up faster than traditional virtual machines because they share the host operating system's kernel, but still keep the applications isolated.
+
+Benefits of using docker instead of virtual machines
+======================================================
+
+1.Run container in seconds instead of minutes
+2.Less resources result less disk space
+3.Uses less memory
+4.Does not need a full OS
+5.Deployment
+6.testing
+
