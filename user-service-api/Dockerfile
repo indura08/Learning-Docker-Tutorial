@@ -15,7 +15,10 @@
 #uda deela thiyna widiyt dockerfile eka hduwama caching use wenne nh hariyt okd api source code ek withrk wenas klath anih hama ekm daala aaye aaye hdnna one image eka , me pahatha thiyna widiyt kalama shape eke ewa avoid krgena docker caching ehma use krla krgnna puluwan
 
 FROM node:20.11.0-alpine
-WORKDIR /app
+
+#Think of this as telling Docker, "From now on, whenever you do something, start in this folder."
+#/app: This is the name of the folder where Docker will start working from.
+WORKDIR /app        
 
 #meke theruma package namin ptaaran elagt onema deyk thiytena .json file okkoma(anthimt thiyn dot ekn kiynne okkoma kiyla) add krnna kiyla
 #meken me widiyt damma dependancies aaye aaye dana one nha chaching walin eka set wenwa 
