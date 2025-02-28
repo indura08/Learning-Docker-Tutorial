@@ -20,6 +20,8 @@ advantages of tagging and versioning
 2.Avoids breaking changes
 3.it is safe
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 important
 ---------
 
@@ -31,12 +33,14 @@ meke indura-web-site kiynne dnata thiyna image eke saha latest kiynne eke versio
 
 mama tutorial eke krpu example eka briefly:
 
-1.mulinma ara test bootstrap projet ekk thiynwa eka thiyna folder ekn command prompt eka open krla aluth image ekk hduwa meham: docker buil -t indura-web-site:latest
+1.mulinma ara test bootstrap projet ekk thiynwa eka thiyna folder ekn command prompt eka open krla aluth image ekk hduwa meham: docker built -t indura-web-site:latest
 
 2. eta psse ekn hduwa tag eka change krla aluth version ekk mehm: docker tag indura-web-site:latest indura-web-site:1
 
 dan latest ek tag wela thiynne version 1 ekat
 
-3.eta passe hduwa aaye tag eka change krla aluth indura-web-site:latest image ekk saha version ekk => docker tag indura-web-site:latst indura-web-site:2 habi mke hdnna kain wenakm kipayak kala index.html file ekt , 
+3.eta passe hduwa aaye tag eka change krla aluth indura-web-site:latest image ekk saha version ekk => docker tag indura-web-site:latst indura-web-site:2 habi mke hdnna kain wenakm kipayak kala index.html file ekt, 
 
 eta passe ports maru krla latest ekati 1, 2tai wena wenama container hdla ewa run krla bluwam 1 eke changes mukth pennane nha manuth latest ekei 2 i pennnwa , ekat hethuwa api changes kale 1 image eka hduwat passe saha 2 image ek hdnna kalin , saha latest image ek point kala 2 image ekt nisa
+
+mekedi ttama wenne ara variable deck swap krnwa wage scn ekk, api mulinma mokk hai image ekk hdnwa :latest daala eka mokak hari version ekkt tag krnwa , example version1 , eta passe api code eke mokak hari wenaskamk kalama aaye image ekk build krnwa :latest image eke naminma latest tag eka daala , eta passe e aluth eka tag krnwa thwa version ektk example version2 ethkot ara krpu changes version 1eke pennane nha namkuth version 2 eke pennwa 

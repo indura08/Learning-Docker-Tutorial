@@ -43,3 +43,7 @@ Node express project ekk docker image ekk hdla run krpu widya saha ekat adala co
 methna 3000:5000 kiynne node express project eka run wenna api deela thiynne localhost 5000 post eke , e 5000 run wenwa 3000 run wenna kiylai me kiyla thiynne 
 
 4. eta passe localhost:5000 port ekt gihilla baluwam badu wada kala.
+
+
+
+special command: docker images | grep k8s-web => menna mehma command eka damma images gode k8s-web kiyla nama thiyna hama image ekkma denwa , mokk hari nammkin apita image ekk hoygnna puluwannm meka thami krnna one 

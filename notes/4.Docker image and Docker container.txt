@@ -13,13 +13,18 @@ commands
 --------
 To see all images we have:	'docker images'
 
-to pull some images frm docker hub or anyhow , to pull some images 		'docker pull imageName' ex: docker pull ninx
+to pull some images frm docker hub or anyhow , to pull some images 		'docker pull imageName' ex: docker pull nginx
 
 to run a image:									'docker run imageName:latest' => methna latest kiynne tag eka  
 
 to run with deattach mode 		'docker run -d nginx:latest'
 
 to remove a image : 		' docker image rm imageId '
+
+to rename a docker image : 	' docker tag <old-image-name>:<old-tag> <new-image-name>:<new-tag> '
+
+
+cache use nokra image ekk hadgnna :  " docker build --no-cache -t react-app ." - ekiynne dan api image ekk hdla eka del krla aaye ekama hdnna giyma cahe use krla hdnna gnna wa eka set nah 
 
 docker container
 ----------------
