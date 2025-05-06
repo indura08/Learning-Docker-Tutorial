@@ -10,7 +10,7 @@ Creation: You can create Docker images using a Dockerfile, which is a text file 
 Storage: Docker images are stored in repositories, such as Docker Hub, which is a public registry where Docker users can share and access images.
 
 commands
---------
+---------
 To see all images we have:	'docker images'
 
 to pull some images frm docker hub or anyhow , to pull some images 		'docker pull imageName' ex: docker pull nginx
@@ -23,6 +23,7 @@ to remove a image : 		' docker image rm imageId '
 
 to rename a docker image : 	' docker tag <old-image-name>:<old-tag> <new-image-name>:<new-tag> '
 
+to create a docker image : " docker build -t yourusernameofdockerhub/image-name:tag . "
 
 cache use nokra image ekk hadgnna :  " docker build --no-cache -t react-app ." - ekiynne dan api image ekk hdla eka del krla aaye ekama hdnna giyma cahe use krla hdnna gnna wa eka set nah 
 

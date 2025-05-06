@@ -1,0 +1,94 @@
+⚙️ 1. Deeper Explanation of Docker Architecture (Under the Hood)
+------------------------------------------------------------------
+
+You're right — there’s more going on under the Docker Client and Daemon. Here's a breakdown:
+
+🧩 Main Components:
+
+✅ 1. Docker Client
+The CLI or GUI tool (like Docker Desktop).
+
+Sends commands (build, run, pull, push) to the Docker Daemon using a REST API over HTTP/Unix socket.
+
+Thin interface — it doesn’t do any real work.
+
+✅ 2. Docker Daemon (dockerd)
+The brain of Docker.
+
+It:
+
+Manages images and containers.
+
+Talks to container runtime.
+
+Exposes a REST API (/var/run/docker.sock on Linux).
+
+🔍 Inside the Daemon:
+Image Manager: Pulls, builds, and stores Docker images.
+
+Container Manager: Creates and manages containers.
+
+Storage Driver: Handles image layers (more on that soon).
+
+Network Manager: Handles container networking (bridge, host, overlay).
+
+Volume Manager: Manages data storage volumes.
+
+✅ 3. Container Runtime (containerd)
+Docker doesn’t directly run containers anymore — it delegates to containerd (standard container runtime).
+
+containerd talks to runc (the low-level tool that sets up namespaces/cgroups to launch the actual container).
+
+📌 So in order:
+Docker Client → Docker Daemon → containerd → runc → Container
+
+
+🖼 4. Docker Images and Layers
+Docker images are built in layers, like a layered cake 🎂.
+
+Each Dockerfile instruction creates a new layer (like RUN, COPY, etc.).
+
+These layers are stacked, and Docker caches them (we’ll explain this next).
+
+
+💾 2. Docker Caching (and why it matters)
+--------------------------------------------
+Docker caching is what makes rebuilds fast and efficient. Here's how it works:
+
+🔄 Docker Build Cache:
+When you run docker build, Docker remembers each instruction it’s already built before (if nothing has changed).
+
+It checks:
+
+The instruction itself
+
+The context (e.g., files used in COPY)
+
+✅ If nothing changed, Docker reuses the previously built layer from cache.
+❌ If something changes, Docker invalidates that layer and everything after it.
+
+🔥 Why does this matter?
+Let’s say you have this Dockerfile:
+
+FROM node:18
+WORKDIR /app
+COPY package.json .
+RUN npm install
+COPY . .
+CMD ["node", "index.js"]
+
+
+🧠 Cache behavior:
+FROM node:18 — uses cached base image if it hasn’t changed ✅
+
+WORKDIR /app — same directory? cache hit ✅
+
+COPY package.json . — same file content? cache hit ✅
+
+RUN npm install — if package.json is unchanged, cache hit ✅
+
+COPY . . — even a tiny change in one file will invalidate cache ❌
+
+CMD — always runs, but doesn't affect the image itself
+
+So a tiny change in your source code can cause the later layers to be rebuilt and not use cache.

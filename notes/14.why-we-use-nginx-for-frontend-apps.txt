@@ -1,0 +1,61 @@
+🤔 Why Do We Use Nginx for Angular or React Apps?
+==================================================
+
+🔹 1. Frontend frameworks build static files
+
+When you build a React or Angular app (npm run build), it generates static files like:
+
+index.html
+
+main.js, styles.css
+
+Images, fonts, etc.
+
+These static files can't run themselves — they need to be served to a browser by a web server.
+
+
+🔹 2. Nginx = Fast, lightweight web server
+
+Nginx (pronounced "engine-x") is:
+
+Super fast
+
+Low memory
+
+Easy to configure
+
+Widely used in production
+
+It's ideal for serving static files efficiently and routing requests.
+
+
+✅ Do You Have To Use Nginx?
+
+👉 In Development?
+No. You can use:
+
+ng serve for Angular
+
+npm start or vite for React
+
+These come with development servers (like webpack-dev-server or Vite).
+
+👉 In Production?
+Yes, usually. You need something to:
+
+Serve the static files
+
+Handle routing (like Angular/React paths)
+
+Possibly do caching, compression, etc.
+
+That’s where Nginx shines. Other options (less common):
+
+Apache
+
+Node.js + express.static
+
+Firebase Hosting
+
+AWS S3 with CloudFront
+

@@ -1,0 +1,35 @@
+🧠 How Do You Know What Instructions to Write in a Dockerfile?
+=================================================================
+
+🎯 Ask Yourself: "What does this app need to run?"
+This is the golden question. Everything in the Dockerfile answers this one question.
+
+
+🪜 Think of Dockerfile Like a Recipe:
+
+Just like cooking:
+
+You choose the ingredients → base image and dependencies
+
+You prepare the kitchen → working directory and environment
+
+You add your recipe files → copy source code
+
+You cook the dish → install dependencies, compile code
+
+You serve it → expose ports and run the app
+
+
+🧩 How to Figure Out What Your App Needs
+------------------------------------------
+
+Here’s a generic checklist to guide you, for any project:
+
+| Step 	| Ask Yourself                                     	| What Docker Instruction?  |
+| ---- 	| ---------------------------------------------------- 	| ------------------------  |
+| 1️⃣ 	| What is the environment (OS + language)?         			| `FROM`                  	    |
+| 2️⃣  	| Where will I place the app inside the container? 					| `WORKDIR`                			|
+| 3️⃣ 	 	| What files need to go into the container?        					| `COPY`                   			|
+| 4️⃣  	| Do I need to install packages or dependencies?   				| `RUN`                    				|
+| 5️⃣  	| Does the app run on a specific port?             					| `EXPOSE`                 			|
+| 6️⃣  	| What command starts the app?                     					| `CMD` or `ENTRYPOINT`    		|
