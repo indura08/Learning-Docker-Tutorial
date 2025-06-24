@@ -1,0 +1,110 @@
+When you install Docker on Windows, you're actually installing Docker Desktop, and yes — it runs a Linux virtual machine under the hood (if you're using Linux containers).
+
+🪟 So what actually happens when you install Docker on Windows?
+-----------------------------------------------------------------
+
+1. You install Docker Desktop for Windows
+
+	It’s a GUI + service that manages everything for you
+
+	It includes Docker Engine, CLI, Compose, etc.
+
+2. Under the hood:
+
+	It uses WSL 2 (Windows Subsystem for Linux version 2)
+
+		Or in older versions, a Hyper-V Linux VM
+
+	It spins up a real Linux kernel inside WSL 2
+
+	Your containers run inside that Linux environment, not on native Windows
+
+
+💡 So am I running Docker on Windows?
+---------------------------------------
+
+Technically no — you're running Docker inside Linux (via WSL2), but using Windows tools to control it.
+
+You use docker commands in PowerShell or CMD or Windows Terminal — but those commands talk to the Linux-based Docker engine in WSL2.
+
+🧠 What is WSL2?
+-----------------
+
+WSL2 is a super-efficient way to run a real Linux kernel inside Windows, without the heavy VM overhead.
+
+It gives you a full Linux environment (like Ubuntu or Alpine) running almost natively.
+
+
+🐳 Container Type Switch
+--------------------------
+
+In Docker Desktop, you’ll see this option:
+
+	"Use the WSL 2 based engine" or "Switch to Windows containers"
+
+So by default, you’re using Linux containers inside WSL2, but you can switch to Windows containers if you really want.
+
+But note:
+
+	Most containers in the world are Linux-based
+
+	So Linux containers + WSL2 is the best choice for 99% of use cases
+
+
+
+Q: so cant i install docker to use directly windows host kernel?
+
+A: 
+
+Great question again — and the short, honest answer is:
+
+No, you cannot use the Windows host kernel directly for running Linux containers with Docker.
+
+But let’s explain why, in very simple terms:
+
+
+💡 Linux Containers ≠ Windows Kernel
+------------------------------------------
+
+	Docker containers (like the official Node, Python, Ubuntu images) are Linux containers.
+
+	They need a Linux kernel to run.
+
+	The Windows kernel is completely different — it can't run Linux binaries or containers directly.
+
+So Docker needs a Linux kernel to work. And since Windows doesn't have that, Docker uses:
+
+WSL 2 (Windows Subsystem for Linux 2) — preferred
+
+Or Hyper-V — in older setups
+
+That’s how Docker pretends there’s a Linux system running on Windows.
+
+
+🧪 But  what  about  Windows containers?
+------------------------------------
+Ahh! Now we’re talking:
+
+You can run Windows containers using the Windows kernel directly. 
+But there are big limitations:
+
+Only Windows-specific containers (not Linux ones)
+
+Fewer available base images
+
+Bigger size, slower builds
+
+Not cross-platform (can’t run them on Linux/Mac)
+
+To do this, you have to switch Docker Desktop into Windows container mode:
+
+" # right-click Docker icon in system tray -> "Switch to Windows containers" "
+
+
+⚖️ Summary:  Can you run Docker containers on Windows without Linux kernel?
+
+Use Case						Possible?	Notes
+
+Run Linux containers using Windows kernel		❌ No		Needs Linux kernel, which Windows doesn’t have
+Run Linux containers using WSL2			✅ Yes		This is the default for Docker Desktop
+Run Windows containers using Windows kernel	✅ Yes		But very limited use cases and support

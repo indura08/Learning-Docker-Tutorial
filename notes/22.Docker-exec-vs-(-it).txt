@@ -1,0 +1,60 @@
+📘 Docker exec vs -it (Simple Explanation)
+---------------------------------------------
+
+🔹 docker run -it
+--------------------
+
+Used to start a new container interactively.
+
+-i = Keep input open
+
+-t = Allocate a terminal (so the output looks like a normal shell)
+
+You can type commands inside the container.
+
+✅ Example:
+
+docker run -it ubuntu
+
+This will:
+
+Start a new container from the Ubuntu image.
+
+Give you access to a shell inside it.
+
+🔹 docker exec -it
+-------------------------
+Used to run a command inside an already running container.
+
+exec means: "Hey, I want to execute something inside this container."
+
+-it still means interactive terminal.
+
+✅ Example:
+
+docker exec -it <container_id_or_name> bash
+
+This will:
+
+Connect you to a running container.
+
+Start a new bash session inside it.
+
+🔁 Main Differences:
+----------------------
+| Feature               | `docker run -it`                   | `docker exec -it`                          |
+| --------------------- | ---------------------------------- | ------------------------------------------ |
+| Starts new container? | ✅ Yes                              | ❌ No (uses an already running one)         |
+| Runs a command?       | ✅ Yes                              | ✅ Yes                                      |
+| Good for?             | Starting new interactive container | Running commands inside existing container |
+| Example               | `docker run -it ubuntu`            | `docker exec -it myapp bash`               |
+
+🧠 Summary:
+------------
+
+Use docker run -it to start a brand new container interactively.
+
+Use docker exec -it to enter or run something inside a container that is already running.
+
+
+

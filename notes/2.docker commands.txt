@@ -1,1 +1,17 @@
 docker command balagnna one nm krnna thiynne docker kyla command line ek ghna eka withri ethkot okkoma commands enwa
+
+1. Docker container ekaka ip address ek balagnna widiya 
+
+	" docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_id_name>"
+	
+🔍 What’s happening here?
+
+docker inspect shows all internal details of the container in JSON.
+
+The -f flag lets you filter and format the output.
+
+.NetworkSettings.Networks is where Docker stores IP info.
+
+.IPAddress gives the actual container’s IP.
+
+

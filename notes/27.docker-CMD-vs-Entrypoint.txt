@@ -1,0 +1,205 @@
+🚀 First: What are CMD and ENTRYPOINT?
+----------------------------------------
+
+These are instructions in a Dockerfile that define what the container does when it starts.
+
+Think of it like:
+
+ENTRYPOINT → the main command the container will always run.
+
+CMD → the default arguments passed to that command — you can override them when running the container.
+
+🍔 Simple Analogy: Burger Shop
+--------------------------------
+
+ENTRYPOINT is the shop itself: It always makes burgers.
+
+CMD is the default burger recipe (cheese, tomato, no onion).
+
+You can say: "Make me a spicy burger instead!" → and override the CMD.
+
+✅ CMD – Set Default Command or Args
+----------------------------------------
+
+CMD ["python", "app.py"]
+
+If you don’t give any command when running the container, this will be run.
+
+But if you do give a command, it overrides the CMD.
+
+Example:
+
+docker run myimage            → runs: python app.py
+docker run myimage ls -l      → runs: ls -l   (CMD overridden)
+
+✅ ENTRYPOINT – Forces a Command
+----------------------------------
+
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+
+Together, this becomes:
+
+docker run myimage            → runs: python app.py
+docker run myimage test.py    → runs: python test.py
+
+🧠 Here, ENTRYPOINT is fixed (python), and CMD is optional/default arguments.
+
+🧨 What if you use shell form?
+If you write:
+
+CMD python app.py
+
+It runs using /bin/sh -c, which may behave differently in terms of signals or when ENTRYPOINT is combined.
+
+Prefer exec form (JSON array):
+
+CMD ["python", "app.py"]
+
+💥 What happens when both are set?
+-------------------------------------
+
+ENTRYPOINT ["echo"]
+CMD ["Hello"]
+
+Runs:
+
+echo Hello
+
+Override CMD:
+
+docker run myimage World
+→ echo World
+
+Override ENTRYPOINT too:
+
+docker run --entrypoint ls myimage -l
+→ ls -l
+
+🤯 Key Differences
+
+| Feature           | CMD                     | ENTRYPOINT                 |
+| ----------------- | ----------------------- | -------------------------- |
+| Purpose           | Default command or args | Fixed command              |
+| Can be overridden | Yes (with `docker run`) | Not easily (unless forced) |
+| Use case          | Flexible defaults       | Fixed behavior             |
+| Form              | Shell or exec form      | Prefer exec form           |
+
+
+===========
+Additional:
+===========
+
+💡 Imagine this:
+-----------------
+
+When you run a Docker container, you are basically saying:
+
+"Hey Docker, start a mini-computer (a container), and run something inside it."
+
+But... run what? 🤔
+
+That’s exactly where CMD and ENTRYPOINT come in.
+They tell Docker what to run inside the container when it starts.
+
+
+📦 Your Container is Like a Little Boxed App
+-------------------------------------------------
+
+The container has its own filesystem (e.g., based on Ubuntu or Alpine)
+
+It has its own processes (like running Python, Node.js, etc.)
+
+But it shares your real PC’s kernel (we’ll explain that shortly)
+
+But when the container starts, Docker needs to know what to actually do — like:
+
+Should it start a web server?
+
+Should it run a Python script?
+
+Should it just sleep?
+
+That’s why CMD or ENTRYPOINT are used:
+
+👉 They define what the container runs when it starts.
+
+🖥️ What about terminals?
+----------------------------
+
+Let’s say you open a terminal and run:
+
+docker run ubuntu
+
+Without CMD or ENTRYPOINT, the container has no idea what to do, so it just starts and stops.
+
+But if you run:
+
+docker run -it ubuntu bash
+
+Now you are saying:
+
+"Run an Ubuntu container and start the bash shell in it."
+
+This creates an interactive terminal session inside the container.
+
+You are not using your host PC’s Ubuntu — you’re now inside the container's tiny Ubuntu system.
+
+So Docker is using your real terminal, but connected to a shell running inside the container.
+
+🔄 So where does CMD/ENTRYPOINT fit in?
+
+Let’s say your Dockerfile is like this:
+
+FROM python:3.6
+CMD ["python", "app.py"]
+
+Now when someone runs:
+
+docker run myimage
+
+→ Docker will start a container and run: python app.py
+→ Because that’s what you told it to do with CMD.
+
+So even if you're not using a terminal, you can still tell the container what its main job is.
+
+🤔 So why not just always run stuff manually?
+----------------------------------------------
+
+Good question. Answer: Automation.
+
+If you always had to type the command every time the container starts, it would be annoying.
+
+CMD/ENTRYPOINT make your Docker images self-contained apps.
+
+This way, your image knows what it’s supposed to do — no manual typing needed.
+
+
+🧠 What does “Docker uses host kernel” mean?
+-----------------------------------------------
+
+Your real PC has an operating system kernel (Linux kernel if on Linux).
+
+Docker does not emulate a full OS — it shares your host's kernel.
+
+This is different from full Virtual Machines (VMs), which use their own kernel.
+
+So when you run a container:
+
+It looks like a separate system (has its own files, processes),
+
+But it still runs using the host machine’s kernel (which makes it fast and lightweight).
+
+If you’re on Windows:
+
+Docker usually runs a lightweight Linux VM behind the scenes, using WSL2 or Hyper-V.
+
+So your container actually runs inside that VM, not directly on Windows.
+
+
+
+
+
+
+
+

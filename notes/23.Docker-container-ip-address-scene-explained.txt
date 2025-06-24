@@ -1,0 +1,51 @@
+🧠 Why does a Docker container get an IP address?
+--------------------------------------------------
+
+When you run a container, Docker creates a mini private network inside your system — like a "little internet" just for containers.
+
+Each container:
+
+Joins this private network.
+
+Gets its own internal IP address (like 172.17.0.2).
+
+Can talk to other containers over this private network using that IP.
+
+So just like your computer has an IP on your Wi-Fi, your container has an IP inside Docker's virtual network.
+
+🧪 Example:
+Let’s say you run two containers:
+
+docker run -d --name app1 nginx
+docker run -d --name app2 httpd
+
+Each will get a Docker-assigned IP:
+
+app1: 172.17.0.2
+
+app2: 172.17.0.3
+
+Now inside the containers, they can ping or talk to each other using these IPs.
+
+🧭 Why is this useful?
+------------------------
+
+Containers can communicate with each other directly (microservices style).
+
+You can build isolated systems like a database container + app container talking privately.
+
+You don’t have to expose ports to your host unless you want outside access.
+
+🔐 Security bonus:
+-------------------
+
+These IPs are not accessible from outside your computer unless you use -p to map ports.
+
+This isolation makes containers more secure and prevents port conflicts.
+
+anik dwse blnna ganiddi docker volumes gana idl blnna ganna
+
+
+
+
+

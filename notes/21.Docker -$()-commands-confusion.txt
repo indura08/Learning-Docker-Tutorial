@@ -1,0 +1,62 @@
+✅ First: What does this do?
+
+docker stop $(docker ps -q)
+
+You're telling Docker:
+
+"Stop all running containers."
+
+But how? What's that $(docker ps -q) part doing?
+
+🧠 What is $(...) in Linux/bash?
+----------------------------------
+
+This is called command substitution.
+
+It runs the command inside the parentheses and replaces it with the result/output.
+
+So:
+
+$(docker ps -q)
+
+means:
+
+“Run docker ps -q and insert its output right here.”
+
+✅ What does docker ps -q do?
+------------------------------
+
+Let’s break it down:
+
+	docker ps → lists all running containers in a table format.
+
+	-q → means "quiet mode" → it will only show container IDs, nothing else.
+
+docker ps -q
+
+Might output something like:
+
+f3c52a1ad18e
+b6d41b9f5e5a
+
+These are the IDs of your running containers.
+
+🔁 So what happens when you run this?
+---------------------------------------
+
+docker stop $(docker ps -q)
+
+Let’s say docker ps -q gives:
+
+abc123 def456
+
+Then the full command becomes:
+
+docker stop abc123 def456
+
+Which just stops all those container
+
+
+
+
+
