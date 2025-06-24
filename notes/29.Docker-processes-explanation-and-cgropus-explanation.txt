@@ -1,0 +1,250 @@
+🧩 1. Docker container processes vs. host processes
+=======================================================
+
+👨‍💻 Imagine this:
+
+You run this on your Ubuntu host:
+
+docker run ubuntu sleep 1000
+You're thinking:
+
+"A process is running inside the container… but where is it? How is it different from a normal Linux process?"
+
+✅ Here’s the truth:
+
+Every container is just a regular Linux process on your host machine — but isolated.
+
+🔒 “Isolated” = Limited visibility and access
+The container lives on your computer, but it’s isolated from:
+
+	Other containers
+
+	The host system (your real Ubuntu OS)
+
+	Other users/processes on the host
+
+	Host’s network interfaces, file systems, and PIDs
+	
+🏠 Analogy:
+------------
+
+Imagine your host machine (Ubuntu) is like a big house.
+
+Now, inside that house, Docker sets up separate rooms (containers). Each room:
+
+Has its own furniture (files, network, processes)
+
+Can’t see what’s in other rooms
+
+Thinks it’s the whole house (because of namespaces)
+
+Shares the same floor (kernel) but with limited permissions
+
+So containers are not on some separate server — they’re right there, in your Ubuntu system, just in isolated boxes with walls around them.
+
+
+You can see container processes on your host using:
+
+ps aux
+
+or
+
+top
+
+BUT — inside the container, it only sees its own processes. It doesn't know about the host's other stuff.
+
+🤯 How does Docker isolate processes?
+
+That’s where namespaces come in.
+
+🧱 2. What are namespaces?
+============================
+
+Think of namespaces like “blinders” for containers.
+They hide parts of the system — so each container thinks it’s alone in the world.
+
+Docker uses Linux namespaces to isolate:
+
+| Namespace Type | What It Hides                 |
+| -------------- | ----------------------------- |
+| `pid`          | Process IDs                   |
+| `net`          | Network interfaces (e.g. IPs) |
+| `mnt`          | Mount points (filesystems)    |
+| `uts`          | Hostname                      |
+| `ipc`          | Shared memory                 |
+| `user`         | User/Group IDs                |
+
+💡 Example: PID Namespace
+----------------------------
+
+On the host, a container process might be PID 4123
+
+But inside the container, it sees itself as PID 1
+
+This prevents PID collisions/confusions, and makes each container feel like it has its own OS.
+
+
+🧰 3. What are cgroups in Docker?
+===================================
+
+Now namespaces are about what a container can see…
+But cgroups are about how much it can use.
+
+💡 cgroups = control groups
+
+They limit and track a container’s:
+
+| Resource     | Example                  |
+| ------------ | ------------------------ |
+| CPU          | Only use 1 core out of 4 |
+| Memory (RAM) | Max 256 MB               |
+| Disk I/O     | Slow down disk access    |
+| Network      | (advanced use)           |
+
+🏗 How Docker uses cgroups:
+-----------------------------
+
+When you run:
+
+docker run --memory=256m ubuntu
+
+sDocker uses Linux cgroups to:
+
+Enforce the 256MB RAM limit
+
+Prevent that container from crashing your whole system
+
+You can also see limits with:
+
+docker stats
+
+| Feature     | Purpose                              | Technology Used |
+| ----------- | ------------------------------------ | --------------- |
+| Isolation   | Hides host resources from containers | **Namespaces**  |
+| Control     | Limits container resource usage      | **cgroups**     |
+| Convenience | Makes containers feel like mini-VMs  | Linux Kernel    |
+
+
+Q and A
+========
+
+Q: so cgropus and namespaces are not related to docker it is related to linux?
+
+A:
+
+🧠 Here’s how it works:
+
+🧱 1. Namespaces → Isolation
+-----------------------------
+
+Feature of the Linux kernel
+
+Lets the system isolate "views" of resources like:
+
+	Process IDs (PID)
+
+	Network interfaces
+
+	Mount points (filesystems)
+
+	Users
+
+	Hostnames
+
+👉 Used by Docker, but not made by Docker.
+
+⚖️ 2. Cgroups (Control Groups) → Resource control
+-----------------------------------------------------
+
+Also a Linux kernel feature
+
+Allows the system to limit or monitor resources used by processes:
+
+	CPU
+
+	Memory
+
+	Disk I/O
+
+	Network
+
+Again — Docker just uses it, it didn’t create it.
+
+🐳 So what’s Docker’s role?
+---------------------------------
+
+Docker is like a friendly interface that says:
+
+"Hey Linux, please isolate this process using namespaces, and limit it using cgroups."
+
+It simplifies things for you. Instead of doing:
+
+mount --make-rprivate /
+unshare --pid --fork --mount-proc bash
+cgcreate -g memory,cpu:mygroup
+
+...you just write:
+
+docker run -m 256m --cpus=1 ubuntu
+
+✅ Easy! Docker hides the Linux complexity under the hood.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q: so if docker creates namespaces for me , lets say i want to create a namespace for my work and i have to crete it manually how to do that?
+
+A:
+
+Fantastic question! 💡 Yes — Docker makes your life easy by creating namespaces for you, but under the hood it’s just using raw Linux namespace features.
+
+If you want to manually create your own namespaces without Docker — yes, you can do that using Linux tools like:
+
+	unshare
+
+	nsenter
+	
+	clone (in C code)
+
+	ip netns (for network namespaces)
+
+
+👇 Let’s try a simple demo (manually creating a process in a new namespace)
+
+We’ll use the unshare command.
+
+✅ Example 1: Create a new UTS and PID namespace
+
+Run this:
+
+sudo unshare --pid --uts --fork bash
+
+
+What this does:
+
+--pid: new process namespace (your shell will see PID 1)
+
+--uts: new hostname namespace (you can set a custom hostname)
+
+--fork: start a new process in this isolated space
+
+bash: open a new bash shell inside the namespace
+
+🧪 Inside the new shell:
+Try this:
+
+hostname new-namespace
+hostname  # should now show "new-namespace"
+ps        # should only show a few processes
+
+You are now inside a tiny world, just like a container! 🧪
+
+so in short namapse definition is that:
+
+" A namespace in Linux is a kernel feature that isolates a set of system resources (like process IDs, network interfaces, hostnames, etc.) so that one group of processes cannot see or affect resources used by another group. "
+
+
+
+
+
+
+
